@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="C:\Users\volpe\OneDrive\Escritorio\LAS NIEVES\PROGRAMACION\PROGRAMACION 3\ProductoRepository-WEBAPI.cs" Link="ProductoRepository-WEBAPI.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>

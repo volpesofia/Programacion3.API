@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoWebApi.Data;
 using ProyectoWebApi.Services;
 
 namespace ProyectoWebApi.Controllers
@@ -17,19 +18,33 @@ namespace ProyectoWebApi.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var productos = _productoService.ObtenerTodos();
-            return Ok(productos);
+            try
+            {
+                var productos = _productoService.ObtenerTodos();
+                return Ok(productos);
+            }
+            catch (DataAccessException)
+            {
+                return StatusCode(500, "Ocurrió un error al procesar la solicitud.");
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var producto = _productoService.ObtenerPorId(id);
+            try
+            {
+                var producto = _productoService.ObtenerPorId(id);
 
-            if (producto == null)
-                return NotFound();
+                if (producto == null)
+                    return NotFound();
 
-            return Ok(producto);
+                return Ok(producto);
+            }
+            catch (DataAccessException)
+            {
+                return StatusCode(500, "Ocurrió un error al procesar la solicitud.");
+            }
         }
     }
 }
